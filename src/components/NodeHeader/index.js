@@ -27,7 +27,7 @@ export default class NodeHeader extends React.Component {
         const { node, selectedNodeFullPath } = this.props;
         const terminal = node && !node.hasChildren && !node.children && node.name !== '/';
         let nodeClassName = "tree__node__link";
-        if(node.fullPath == selectedNodeFullPath){
+        if(node.uid == selectedNodeFullPath){
             nodeClassName = `${nodeClassName} tree__node__activeLink`
         }
         return (

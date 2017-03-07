@@ -12,6 +12,7 @@ const defaultState = {
 			children: null,
 			name: '/',
 			fullPath: '/',
+			uid: '/',
 			terminal: false
 		}
 	},
@@ -49,10 +50,12 @@ export default handleActions(Object.assign({}, {
 			hasChildren: fileNames.length >0 || folderNames.length > 0
 		});
 
+		console.log(clonedNode);
+
 		let updatedNodes = Object.assign({}, newState.nodes, {[clonedNode.fullPath]: clonedNode}, fileNodes, folderNodes)
 		return Object.assign({}, newState, {
 			nodes: updatedNodes, 
-			selectedNodeFullPath: clonedNode.fullPath, 
+			selectedNodeFullPath: clonedNode.uid, 
 			fileContent: '',
 			error: false
 		});
@@ -69,7 +72,7 @@ export default handleActions(Object.assign({}, {
 		else{
 			let { toggledNode, s3Response } = action.payload;
 			return Object.assign({}, state, {
-				selectedNodeFullPath: toggledNode.fullPath, 
+				selectedNodeFullPath: toggledNode.uid, 
 				fileContent: s3Response.text,
 				error: false
 			});
@@ -84,7 +87,7 @@ export default handleActions(Object.assign({}, {
 		let updatedNodes = Object.assign({}, newState.nodes, {[toggledNode.fullPath]: toggledNode});
 		return Object.assign({}, newState, {
 			nodes: updatedNodes, 
-			selectedNodeFullPath: toggledNode.fullPath, 
+			selectedNodeFullPath: toggledNode.uid, 
 			fileContent: '',
 			error: false
 		});

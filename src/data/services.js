@@ -30,16 +30,27 @@ export const createFilesHolderObj = (contentsArray, prefix) => {
   for(let i=0; i < contentsArray.length ; i++){
     let content = contentsArray[i],
         contentFullPath = content['Key'][0],
-        contentName = contentFullPath.substr(contentFullPath.indexOf(prefix)+prefix.length), 
         nodeObj = {
           active: false,
           toggled: false,
           hasChildren: false,
           children: null,
-          name: contentName,
           fullPath: contentFullPath,
+        };
+        if(contentFullPath === prefix){
+          let contentName = contentFullPath,
+              uid = `${prefix}${contentFullPath}`;
+          nodeObj['name'] = contentName;
+          nodeObj['uid'] = uid;
+          tempObj[uid] = nodeObj;
         }
-    tempObj[String(contentFullPath)] = nodeObj;
+        else{
+          let contentName = contentFullPath.substr(contentFullPath.indexOf(prefix)+prefix.length),
+              uid = `${contentFullPath}`;
+          nodeObj['name'] = contentName;
+          nodeObj['uid'] = uid;
+          tempObj[uid] = nodeObj;
+        }
   }
   return Object.assign({}, tempObj);
 }
@@ -49,16 +60,27 @@ export const createSubDirectoryObj = (commonPrefixesArray, prefix) => {
   for(let i =0; i < commonPrefixesArray.length; i++){
     let prefixObj = commonPrefixesArray[i],
         prefixFullPath = prefixObj['Prefix'][0],
-        prefixName = prefixFullPath.substr(prefixFullPath.indexOf(prefix)+prefix.length),
         nodeObj = {
           active: false,
           toggled: false,
           hasChildren: true,
           children: null,
-          name: prefixName,
           fullPath: prefixFullPath
+        };
+        if(prefixFullPath === prefix){
+          let prefixName = prefixFullPath,
+              uid = `${prefix}${prefixFullPath}`;
+          nodeObj['name'] = prefixName;
+          nodeObj['uid'] = uid;
+          tempObj[uid] = nodeObj;
         }
-    tempObj[String(prefixFullPath)] = nodeObj;
+        else {
+          let prefixName = prefixFullPath.substr(prefixFullPath.indexOf(prefix)+prefix.length),
+              uid = `${prefixFullPath}`;
+          nodeObj['name'] = prefixName;
+          nodeObj['uid'] = uid;
+          tempObj[uid] = nodeObj;
+        }
   }
   return Object.assign({}, tempObj);
 }
