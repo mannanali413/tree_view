@@ -1,0 +1,63 @@
+$font-family-proxima: 'ProximaNova', sans-serif !default;
+
+$light: 300;
+$normal: 400;
+$medium: 500;
+$bold: 600;
+$ultra-bold: 700;
+
+$text-sizes: (
+	flush:  ( font-size: 10px, line-height: 14px ),
+	xSmall: ( font-size: 12px, line-height: 16px ),
+	small:  ( font-size: 14px, line-height: 18px ),
+	medium: ( font-size: 16px, line-height: 20px ),
+	large:  ( font-size: 18px, line-height: 24px ),
+	xLarge: ( font-size: 20px, line-height: 26px ),
+);
+
+$title-sizes: (
+	flush:  ( font-size: 22px, line-height: 28px ),
+	xSmall: ( font-size: 24px, line-height: 32px ),
+	small:  ( font-size: 28px, line-height: 36px ),
+	medium: ( font-size: 30px, line-height: 40px ),
+	large:  ( font-size: 32px, line-height: 42px ),
+	xLarge: ( font-size: 36px, line-height: 46px ),
+);
+
+@mixin textSize($name) {
+  @if map-has-key($text-sizes, $name) {
+	$ts: map-get($text-sizes, $name);
+	font-size: map-get($ts, font-size);
+	line-height: map-get($ts, height);
+  }
+}
+
+@font-face {
+	font-family: 'ProximaNova';
+	src: url('https://lstatic1.craftsvilla.com/fonts/3218D8_3_0.eot');
+	src: url('https://lstatic1.craftsvilla.com/fonts/3218D8_3_0.eot?#iefix') format('embedded-opentype'), url('https://lstatic1.craftsvilla.com/fonts/3218D8_3_0.woff2') format('woff2'), url('https://lstatic1.craftsvilla.com/fonts/3218D8_3_0.woff') format('woff'), url('https://lstatic1.craftsvilla.com/fonts/3218D8_3_0.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'ProximaNova';
+	src: url('https://lstatic1.craftsvilla.com/fonts/3218D8_5_0.eot');
+	src: url('https://lstatic1.craftsvilla.com/fonts/3218D8_5_0.eot?#iefix') format('embedded-opentype'), url('https://lstatic1.craftsvilla.com/fonts/3218D8_5_0.woff2') format('woff2'), url('https://lstatic1.craftsvilla.com/fonts/3218D8_5_0.woff') format('woff'), url('https://lstatic1.craftsvilla.com/fonts/3218D8_5_0.ttf') format('truetype');
+	font-weight: bold;
+	font-style: italic;
+}
+@font-face {
+	font-family: 'ProximaNova';
+	src: url('https://lstatic1.craftsvilla.com/fonts/3218D8_9_0.eot');
+	src: url('https://lstatic1.craftsvilla.com/fonts/3218D8_9_0.eot?#iefix') format('embedded-opentype'), url('https://lstatic1.craftsvilla.com/fonts/3218D8_9_0.woff2') format('woff2'), url('https://lstatic1.craftsvilla.com/fonts/3218D8_9_0.woff') format('woff'), url('https://lstatic1.craftsvilla.com/fonts/3218D8_9_0.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;;
+}
+
+@font-face {
+	font-family: 'ProximaNova';
+	src: url('https://lstatic1.craftsvilla.com/fonts/3218D8_B_0.eot');
+	src: url('https://lstatic1.craftsvilla.com/fonts/3218D8_B_0.eot?#iefix') format('embedded-opentype'), url('https://lstatic1.craftsvilla.com/fonts/3218D8_B_0.woff2') format('woff2'), url('https://lstatic1.craftsvilla.com/fonts/3218D8_B_0.woff') format('woff'), url('https://lstatic1.craftsvilla.com/fonts/3218D8_B_0.ttf') format('truetype');
+	font-weight: normal;
+	font-style: italic;
+}

@@ -1,0 +1,20 @@
+{
+  "presets": ["es2015", "react"],
+  "plugins": [
+  	"transform-runtime",
+    "transform-minify-booleans",
+  	"transform-react-constant-elements",
+    "transform-react-inline-elements",
+    "transform-react-pure-class-to-function",
+    "babel-plugin-transform-decorators-legacy"
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+      	"transform-remove-console",
+      	"transform-remove-debugger",
+        "transform-react-remove-prop-types"
+      ]
+    }
+  }
+}

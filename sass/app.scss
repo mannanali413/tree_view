@@ -1,0 +1,129 @@
+@import "normalize";
+@import "common";
+@import "puregrid/grid";
+@import "theme";
+
+// #### COLORS ####
+@each $name, $color in $colors {
+	.color-#{$name} {
+		color: $color;
+	}
+}
+
+// #### TEXT SIZES ####
+@each $key, $value in $text-sizes {
+	.text-#{$key} {
+		font-size: map-get($value, font-size);
+		line-height: map-get($value, line-height);
+	}
+}
+
+// #### TITLE SIZES ####
+@each $key, $value in $title-sizes {
+	.title-#{$key} {
+		font-size: map-get($value, font-size);
+		line-height: map-get($value, line-height);
+	}
+}
+
+// #### FONTS ####
+.light       { font-weight: $light !important; }
+.normal      { font-weight: $normal !important; }
+.medium      { font-weight: $medium !important; }
+.bold        { font-weight: $bold !important; }
+.ultra-bold  { font-weight: $ultra-bold !important; }
+
+.font-proxima { font-family: $font-family-proxima !important; }
+
+// #### BASE ####
+html, body {
+	height: 100%;
+}
+
+.relative {
+	position: relative;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.float-left,
+.pull-left {
+	float: left;
+}
+
+.float-right,
+.pull-right {
+	float: right;
+}
+
+.clearfix:after,
+.clearfix:before {
+	content: " ";
+	/* 1 */
+	display: table;
+	/* 2 */
+}
+
+.overflow-hidden {
+	overflow-y: hidden;
+	overflow-x: hidden;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+body, html {
+	background-color: #21252B;
+	font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+	color: white;
+}
+
+h1 { padding: 0 20px; }
+
+.js-modal {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1500;
+	background-color: #000;
+
+	&.fade {
+		opacity: 0;
+		filter: alpha(opacity=0);
+		-webkit-transition: opacity 0.15s linear;
+		-o-transition: opacity 0.15s linear;
+		transition: opacity 0.15s linear;
+	}
+
+	&.in {
+		opacity: 0.5;
+		filter: alpha(opacity=50);
+		-webkit-transition: opacity 0.15s linear;
+		-o-transition: opacity 0.15s linear;
+		transition: opacity 0.15s linear;
+	}
+	
+}
+
+.overlay-loader {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 99999;
+	background: url("https://2.bp.blogspot.com/-sjmuWOe6FEs/VsczzuaVeWI/AAAAAAAABbU/IsvuGArmyjA/s1600/ajax-loader2.gif") center no-repeat #fff;
+}

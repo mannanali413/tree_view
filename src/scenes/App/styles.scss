@@ -1,0 +1,12 @@
+.component {
+    width: 45%;
+    display: inline-block;
+    vertical-align: top;
+    padding: 20px;
+
+    @media screen and (max-width: 640px) {
+        width: 100%;
+        display: block;
+    }
+
+}

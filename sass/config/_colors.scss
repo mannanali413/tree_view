@@ -1,0 +1,17 @@
+$colors: (
+		red: #981937,
+		black: #000,
+		greyRegular: rgba(0,0,0,0.54),
+		greyLight: rgba(0,0,0,0.38),
+		greyLighter: rgba(0,0,0,0.12),
+		blackRegular: rgba(0,0,0,0.87),
+);
+
+@function color($key) {
+	@if map-has-key($colors, $key) {
+		@return map-get($colors, $key);
+	}
+
+	@warn "Unknown `#{$key}` in $colors.";
+	@return null;
+}
