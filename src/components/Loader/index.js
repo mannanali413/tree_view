@@ -1,15 +1,22 @@
 import React, {Component} from 'react'
 
-export default class Loading extends Component {
+export default class Loader extends Component {
 	constructor(props){
 		super(props)
 	}
 
 	render(){
-		return (
-	        <div className="tree__node__loading">
-	            loading...
-	        </div>
-    	);	
+		if(this.props.loading){
+			return (
+	        	<div className="js-modal fade in overlay-loader"></div>
+    		);		
+		}
+		else{
+			return null;
+		}
 	}
+}
+
+Loader.propTypes = {
+	loading: React.PropTypes.bool
 }

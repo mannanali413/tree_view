@@ -54,3 +54,18 @@ export const getFileDataToView = createAction(constants.GET_FILE_DATA, payload =
 }))
 
 export const toggleNode = createAction(constants.TOGGLE_NODE_STATE)
+
+export const showLoader = createAction(constants.SHOW_LOADER);
+export const hideLoader = createAction(constants.HIDE_LOADER_ON_ERROR);
+
+export const makeRequest = (actionIntended) => {
+    return (dispatch, getState) => {
+        try {
+            dispatch(showLoader());
+            dispatch(actionIntended());
+        }
+        catch(error) {
+            dispatch(hideLoader(error))
+        }
+    }
+}

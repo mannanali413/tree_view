@@ -7,13 +7,13 @@ class FolderTree extends React.Component {
         super(props);
     }
     render(){
-        let { onToggle, allNodes, selectedNodeFullPath } = this.props,
+        let { onToggle, allNodes, selectedNodeUID } = this.props,
             data = allNodes["/"];
         if(!Array.isArray(data)){ data = [data]; }
         return (
             <ul className="tree" ref="treeBase">
                 {data.map((node, index) =>
-                    <TreeNode key={node.id || index} node={node} onToggle={onToggle} allNodes={allNodes} selectedNodeFullPath={selectedNodeFullPath}/>
+                    <TreeNode key={node.id || index} node={node} onToggle={onToggle} allNodes={allNodes} selectedNodeUID={selectedNodeUID}/>
                 )}
             </ul>
         );
@@ -26,6 +26,7 @@ FolderTree.propTypes = {
         React.PropTypes.array
     ]).isRequired,
     onToggle: React.PropTypes.func,
+    selectedNodeUID: React.PropTypes.string
 };
 
 export default FolderTree;

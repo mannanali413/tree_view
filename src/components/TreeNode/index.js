@@ -37,30 +37,20 @@ class TreeNode extends React.Component {
     }
     renderHeader(){
         return (
-            <NodeHeader node={Object.assign({}, this.props.node)} onClick={this.onClick} selectedNodeFullPath={this.props.selectedNodeFullPath}/>
+            <NodeHeader node={Object.assign({}, this.props.node)} onClick={this.onClick} selectedNodeUID={this.props.selectedNodeUID}/>
         );
     }
     renderChildren(){
         if(!this.props.node) return null;
         
-        if(this.props.node.loading){ return this.renderLoading(); }
         let children = this.props.node.children;
         if (!Array.isArray(children)) { children = children ? [children] : []; }
         let allNodes = this.props.allNodes;
         return (
             <ul className="tree__node__subtree" ref="subtree">
                 {children.map((child, index) => 
-                        <TreeNode {...this._eventBubbles()} key={child.id || index} node={allNodes[child]} allNodes={allNodes} selectedNodeFullPath={this.props.selectedNodeFullPath}/>
+                        <TreeNode {...this._eventBubbles()} key={child.id || index} node={allNodes[child]} allNodes={allNodes} selectedNodeUID={this.props.selectedNodeUID}/>
                 )}
-            </ul>
-        );
-    } 
-    renderLoading(){
-        return (
-            <ul className="tree__node__subtree">
-                <li>
-                   <div className="tree__node__loading">loading...</div>
-                </li>
             </ul>
         );
     }

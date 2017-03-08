@@ -24,10 +24,10 @@ export default class NodeHeader extends React.Component {
         return false;
     }
     render(){
-        const { node, selectedNodeFullPath } = this.props;
+        const { node, selectedNodeUID } = this.props;
         const terminal = node && !node.hasChildren && !node.children && node.name !== '/';
         let nodeClassName = "tree__node__link";
-        if(node.uid == selectedNodeFullPath){
+        if(node.uid == selectedNodeUID){
             nodeClassName = `${nodeClassName} tree__node__activeLink`
         }
         return (

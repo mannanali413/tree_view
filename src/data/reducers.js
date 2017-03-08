@@ -16,7 +16,7 @@ const defaultState = {
 			terminal: false
 		}
 	},
-	selectedNodeFullPath: "/",
+	selectedNodeUID: "/",
 	fileContent: "",
 	error: false,
 	loading: false
@@ -50,14 +50,13 @@ export default handleActions(Object.assign({}, {
 			hasChildren: fileNames.length >0 || folderNames.length > 0
 		});
 
-		console.log(clonedNode);
-
 		let updatedNodes = Object.assign({}, newState.nodes, {[clonedNode.fullPath]: clonedNode}, fileNodes, folderNodes)
 		return Object.assign({}, newState, {
 			nodes: updatedNodes, 
-			selectedNodeFullPath: clonedNode.uid, 
+			selectedNodeUID: clonedNode.uid, 
 			fileContent: '',
-			error: false
+			error: false,
+			loading: false
 		});
 	},
 
@@ -66,15 +65,17 @@ export default handleActions(Object.assign({}, {
 		if(action.error){
 			return Object.assign({}, state, {
 				error: true,
-				fileContent: JSON.stringify(action.payload)
+				fileContent: JSON.stringify(action.payload),
+				loading: false
 			})
 		}
 		else{
 			let { toggledNode, s3Response } = action.payload;
 			return Object.assign({}, state, {
-				selectedNodeFullPath: toggledNode.uid, 
+				selectedNodeUID: toggledNode.uid, 
 				fileContent: s3Response.text,
-				error: false
+				error: false,
+				loading: false
 			});
 		}
 
@@ -87,10 +88,20 @@ export default handleActions(Object.assign({}, {
 		let updatedNodes = Object.assign({}, newState.nodes, {[toggledNode.fullPath]: toggledNode});
 		return Object.assign({}, newState, {
 			nodes: updatedNodes, 
-			selectedNodeFullPath: toggledNode.uid, 
+			selectedNodeUID: toggledNode.uid, 
 			fileContent: '',
 			error: false
 		});
+	},
+
+	[constants.SHOW_LOADER] (state, action) {
+		let newState = Object.assign({}, state, {loading: true});
+		return newState;
+	},
+
+	[constants.HIDE_LOADER_ON_ERROR] (state, action) {
+		let newState = Object.assign({}, state, {loading: false});
+		return newState;
 	}
 
 }), defaultState);

@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom'
 
 import FolderTree from '../../components/FolderTree'
 import FileViewer from '../../components/FileViewer'
+import Loader from '../../components/Loader'
 import autobind from 'autobind-decorator'
-
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { createSelector } from 'reselect'
 
 import * as actions from '../../data/actions'
+
 
 require('./styles.scss');
 
@@ -22,39 +24,47 @@ class App extends React.Component {
         let { actions } = this.props;
         if(node.hasChildren){
             if(node.children && node.children.length > 0){
-                actions.toggleNode(node);
+               actions.toggleNode(node);
             }
             else{
-                actions.getS3Files(node);
+                actions.makeRequest(actions.getS3Files.bind(null, node));
             }
         }
         else {
-            actions.getFileDataToView(node);
+            actions.makeRequest(actions.getFileDataToView.bind(null, node));
         }
     }
 
     render(){
-        let {allNodes, selectedNodeFullPath, fileContent, error} = this.props;
+        let {allNodes, selectedNodeUID, fileContent, error, loading} = this.props;
         return (
             <div>
                 <div className="component">
-                   <FolderTree selectedNodeFullPath={selectedNodeFullPath} onToggle={this.onToggle} allNodes={allNodes}/>
+                   <FolderTree selectedNodeUID={selectedNodeUID} onToggle={this.onToggle} allNodes={allNodes}/>
                 </div>
                 <div className="component">
                     <FileViewer fileContent={fileContent} error={error}/>
                 </div>
+                <Loader loading={loading}/>
             </div>
 
         );
     }
 }
 
+const getAllNodes = (state) => state.nodes
+const getSelectedNodeUID = (state) => state.selectedNodeUID
+const getFileContent = (state) => state.fileContent
+const hasError = (state) => state.error
+const isLoading = (state) => state.loading
+
 const mapStateToProps = (state) => (
     {
-        allNodes: state.nodes,
-        selectedNodeFullPath: state.selectedNodeFullPath,
-        fileContent: state.fileContent,
-        error: state.error
+        allNodes: getAllNodes(state),
+        selectedNodeUID: getSelectedNodeUID(state),
+        fileContent: getFileContent(state),
+        error: hasError(state),
+        loading: isLoading(state)
     }
 )
 
