@@ -60,7 +60,13 @@ class TreeNode extends React.Component {
 
 TreeNode.propTypes = {
     node: React.PropTypes.object.isRequired,
-    onToggle: React.PropTypes.func
+    onToggle: React.PropTypes.func,
+    node: React.PropTypes.object.isRequired,
+    allNodes: React.PropTypes.oneOfType([
+        React.PropTypes.object,
+        React.PropTypes.array
+    ]).isRequired,
+    selectedNodeUID: React.PropTypes.string.isRequired
 };
 
 export default TreeNode;

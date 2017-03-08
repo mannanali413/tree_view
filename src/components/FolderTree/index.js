@@ -21,7 +21,7 @@ class FolderTree extends React.Component {
 }
 
 FolderTree.propTypes = {
-    data: React.PropTypes.oneOfType([
+    allNodes: React.PropTypes.oneOfType([
         React.PropTypes.object,
         React.PropTypes.array
     ]).isRequired,

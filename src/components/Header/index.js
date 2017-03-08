@@ -21,3 +21,7 @@ export default class Header extends Component {
         );    
     }
 }
+
+Header.propTypes = {
+    node: React.PropTypes.object.isRequired
+}
