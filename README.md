@@ -9,9 +9,9 @@ The S3 bucket being used is [data.openspending.org.s3-eu-west-1.amazonaws.com](d
 Head out at [mannanli413.github.io](mannanali413.github.io) to view live example
 
 ## Setting up
-1 Clone this repo
-2 Run npm install
-3 run `<webpack>` 
-4 `<node server.js>`
+1. Clone this repo
+2. Run npm install
+3. run `webpack` 
+4. `node server.js`
 
 
