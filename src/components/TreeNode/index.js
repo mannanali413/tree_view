@@ -1,7 +1,6 @@
 import React from 'react';
 import { VelocityTransitionGroup } from 'velocity-react';
 import autobind from 'autobind-decorator';
-import defaultAnimations from '../../animations';
 
 import NodeHeader from '../NodeHeader';
 
@@ -24,7 +23,6 @@ class TreeNode extends React.Component {
         );
     }
     renderDrawer(){
-        let animations = defaultAnimations;
         const toggled = this.props.node.toggled;
         if(!toggled){ return null; }
         return (

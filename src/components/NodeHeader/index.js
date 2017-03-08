@@ -5,8 +5,6 @@ import deepEqual from 'deep-equal';
 import Header from '../Header';
 import Toggle from '../Toggle';
 import { VelocityComponent } from 'velocity-react';
-import animations from '../../animations'
-
 
 export default class NodeHeader extends React.Component {
     constructor(props){
